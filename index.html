@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZLEEPY CLOUD - 2026 Product Catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f1ea;
+      --paper: #fffdf9;
+      --ink: #1d1d1d;
+      --muted: #6a665f;
+      --line: #ddd3c7;
+      --accent: #0f345f;
+      --gold: #b28a5f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 500px at 120% -20%, #e6ddcf 0%, transparent 60%),
+        radial-gradient(900px 500px at -20% 120%, #ece4d7 0%, transparent 55%),
+        var(--bg);
+      font-family: "DM Sans", sans-serif;
+    }
+    .wrap { width: min(1220px, 100% - 32px); margin: 0 auto; }
+    .title-font { font-family: "Bodoni Moda", serif; }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      width: clamp(46px, 5.2vw, 64px);
+      height: clamp(46px, 5.2vw, 64px);
+      object-fit: contain;
+      display: block;
+    }
+    .brand { margin: 0; font-size: clamp(24px, 4vw, 34px); letter-spacing: .06em; }
+    .note {
+      border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px;
+      font-size: 12px; color: var(--muted); letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 34px 0 20px;
+    }
+    .hero-main {
+      background: linear-gradient(135deg, #fff, #f2eadf);
+      border: 1px solid var(--line); border-radius: 20px;
+      overflow: hidden;
+    }
+    .hero-main img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      aspect-ratio: 16/9;
+    }
+
+    .intro {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .intro h2 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: .98;
+    }
+    .intro p { margin: 0; color: var(--muted); line-height: 1.75; }
+
+    .tabs {
+      display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 16px;
+    }
+    .tab {
+      border: 1px solid var(--line); background: #fff;
+      color: var(--muted); border-radius: 999px;
+      padding: 10px 16px; font-weight: 700; cursor: pointer;
+    }
+    .tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    .product-layout {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px;
+      align-items: start;
+    }
+    .showcase, .detail {
+      background: #fff; border: 1px solid var(--line); border-radius: 16px;
+      overflow: hidden;
+    }
+    .showcase-main {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: #f4f0ea;
+    }
+    .thumbs {
+      display: grid; grid-template-columns: repeat(4,minmax(0,1fr));
+      gap: 8px; padding: 10px; border-top: 1px solid var(--line); background: #faf7f1;
+    }
+    .thumbs img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px; cursor: pointer; border: 1px solid transparent;
+      background: #fff;
+    }
+    .square-main {
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    .square-thumbs img {
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    .thumbs img.active { border-color: var(--gold); }
+
+    .detail { padding: 18px; }
+    .detail h3 {
+      margin: 0; color: var(--accent);
+      font-size: clamp(28px, 3.6vw, 40px);
+      line-height: 1;
+    }
+    .sub { margin: 8px 0 16px; color: var(--muted); font-size: 14px; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .chip {
+      border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px;
+      font-size: 13px; background: #fff; cursor: pointer;
+    }
+    .chip.active { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .polo-copy {
+      margin: 14px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fcfaf6;
+      padding: 12px;
+    }
+    .polo-copy p { margin: 0 0 10px; line-height: 1.7; color: #2a2a2a; font-size: 14px; }
+    .polo-copy p:last-child { margin-bottom: 0; }
+    .polo-copy h4 {
+      margin: 10px 0 6px;
+      font-size: 13px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .polo-copy ul {
+      margin: 0 0 8px;
+      padding-left: 18px;
+      color: #2a2a2a;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .polo-copy .checks { list-style: none; padding-left: 0; }
+    .polo-copy .checks li { margin-bottom: 4px; }
+    .polo-copy .sizes li { font-variant-numeric: tabular-nums; }
+    .product-copy {
+      margin: 14px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fcfaf6;
+      padding: 12px;
+    }
+    .product-copy p { margin: 0 0 10px; line-height: 1.7; color: #2a2a2a; font-size: 14px; }
+    .product-copy p:last-child { margin-bottom: 0; }
+    .product-copy h4 {
+      margin: 10px 0 6px;
+      font-size: 13px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .product-copy ul {
+      margin: 0 0 8px;
+      padding-left: 18px;
+      color: #2a2a2a;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .product-copy .checks { list-style: none; padding-left: 0; }
+    .product-copy .checks li { margin-bottom: 4px; }
+    .product-copy .sizes li { font-variant-numeric: tabular-nums; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .btn {
+      text-decoration: none; color: #fff; font-weight: 700; font-size: 13px;
+      border-radius: 10px; padding: 10px 12px; display: inline-block;
+    }
+    .line { background: #0b7a3a; }
+    .facebook { background: #1877f2; }
+    .shopee { background: #ee4d2d; }
+    .tiktok { background: #111; }
+    .size { background: var(--accent); }
+
+    .banner {
+      margin-top: 14px;
+      background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    }
+    .banner img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16/6; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.66);
+      display: none;
+      place-items: center;
+      padding: 20px;
+      z-index: 60;
+    }
+    .modal.open { display: grid; }
+    .modal-card {
+      width: min(920px, 100%);
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: #faf7f1;
+    }
+    .modal-head h4 { margin: 0; font-size: 14px; color: var(--muted); }
+    .modal-close {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .modal img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+
+    footer {
+      margin: 30px 0 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 940px) {
+      .product-layout { grid-template-columns: 1fr; }
+      .thumbs { grid-template-columns: repeat(6,minmax(0,1fr)); }
+    }
+    @media (max-width: 640px) {
+      .thumbs { grid-template-columns: repeat(4,minmax(0,1fr)); }
+      .note { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand-wrap">
+        <img class="brand-logo" src="./catalog-assets-v2/Logo-Zleepy-Cloud-Black.svg" alt="Zleepy Cloud Logo">
+        <h1 class="brand title-font">ZLEEPY CLOUD</h1>
+      </div>
+      <div class="note">2026 Product Catalog · No Checkout</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-main"><img src="./catalog-assets-v2/Banner-Top-New.PNG" alt="Zleepy Cloud Main Banner"></div>
+    </section>
+
+    <section class="intro">
+      <h2 class="title-font">Catalog Collection</h2>
+      <p>
+        สินค้ามีทั้งหมด 3 แบบ: <strong>Oversize T-shirt</strong>, <strong>Crop T-Shirt</strong>, และ <strong>Polo Golf</strong><br>
+        หน้านี้เป็น Catalog สำหรับดูรายละเอียดสินค้าเท่านั้น<br>
+        หากต้องการสั่งซื้อให้ผ่านช่องทาง Line / Shopee / TikTok Shop
+      </p>
+    </section>
+
+    <section>
+      <div class="tabs">
+        <button class="tab active" data-tab="oversize">Oversize T-shirt</button>
+        <button class="tab" data-tab="crop">Crop T-Shirt</button>
+        <button class="tab" data-tab="polo">Polo Golf</button>
+      </div>
+
+      <div class="panel active" id="panel-oversize">
+        <div class="product-layout">
+          <article class="showcase">
+            <img class="showcase-main" id="oversize-main" src="./catalog-assets-v2/Oversize T-Shirt/Cover Oversize-1.jpg" alt="Oversize">
+            <div class="thumbs" id="oversize-thumbs"></div>
+          </article>
+          <article class="detail">
+            <h3 class="title-font">Oversize<br>T-shirt</h3>
+            <p class="sub">Cover + Detail + Color Preview</p>
+            <div class="chips" id="oversize-colors"></div>
+            <div class="product-copy">
+              <p><strong>ZLEEPY CLOUD OVERSIZE SPORT COLLECTION</strong></p>
+              <p>เสื้อ Oversize Sport ดีไซน์คอวีตัด แต่งขอบ 2 สี สไตล์สปอร์ตมินิมอล ใส่ได้ทั้งผู้หญิงและผู้ชาย แมทง่าย ใส่ได้ทั้งออกกำลังกาย คาเฟ่ หรือใส่เที่ยวในวันสบายๆ</p>
+
+              <h4>จุดเด่นสินค้า</h4>
+              <ul>
+                <li>เนื้อผ้านุ่ม เบา ระบายอากาศดี</li>
+                <li>แห้งไว ไม่อับชื้น ใส่สบายตลอดวัน</li>
+                <li>ทรง Oversize ใส่ได้ทุกเพศ</li>
+                <li>คอวีตัด ดีไซน์สปอร์ต ใส่แล้วดูมีสไตล์</li>
+                <li>โลโก้อกซ้าย DFT คมชัด สีไม่แตก</li>
+                <li>ด้านหลังพิมพ์ ZLEEPY CLOUD งานคุณภาพสูง</li>
+              </ul>
+
+              <h4>รายละเอียดสินค้า</h4>
+              <ul>
+                <li>เนื้อผ้า : Micro Rice Grain</li>
+                <li>การพิมพ์ : DFT (Direct Film Transfer)</li>
+                <li>ทรงเสื้อ : Oversize Fit</li>
+                <li>สี : ดำ / ขาว / ดำ-ชมพู</li>
+                <li>เหมาะสำหรับ : ออกกำลังกาย, กีฬา, คาเฟ่, ใส่ลำลอง</li>
+              </ul>
+
+              <h4>Size</h4>
+              <ul class="sizes">
+                <li>S : รอบอก 40&quot; / ยาว 28&quot;</li>
+                <li>M : รอบอก 44&quot; / ยาว 30&quot;</li>
+                <li>L : รอบอก 46&quot; / ยาว 31&quot;</li>
+                <li>XL : รอบอก 49&quot; / ยาว 31.5&quot;</li>
+                <li>2XL : รอบอก 55&quot; / ยาว 33&quot;</li>
+              </ul>
+
+              <h4>ก่อนสั่งซื้อ</h4>
+              <ul>
+                <li>สีสินค้าอาจแตกต่างเล็กน้อยตามแสงและหน้าจอ</li>
+                <li>หากชอบใส่ Oversize มากๆ แนะนำเพิ่ม 1 ไซซ์</li>
+              </ul>
+            </div>
+            <div class="actions">
+              <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Oversize T-Shirt/Size Chart .jpg" data-size-title="Oversize T-shirt Size Chart">View Size Chart</a>
+              <a class="btn facebook" href="https://www.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener">Facebook Page</a>
+              <a class="btn shopee" href="https://s.shopee.co.th/3VUF5gSP7O" target="_blank" rel="noopener">Shopee</a>
+              <a class="btn tiktok" href="https://vt.tiktok.com/ZS6h3yhmC/" target="_blank" rel="noopener">TikTok</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-crop">
+        <div class="product-layout">
+          <article class="showcase">
+            <img class="showcase-main square-main" id="crop-main" src="./catalog-assets-v2/Crop T-Shirt/Cover Crop-2.png" alt="Crop">
+            <div class="thumbs square-thumbs" id="crop-thumbs"></div>
+          </article>
+          <article class="detail">
+            <h3 class="title-font">Crop<br>T-Shirt</h3>
+            <p class="sub">Cover + Detail + Color Preview</p>
+            <div class="chips" id="crop-colors"></div>
+            <div class="product-copy">
+              <p><strong>Zleepy Cloud Sporty Crop T-Shirt</strong></p>
+              <p>เสื้อครอปทรงสวย สไตล์สปอร์ตมินิมอล ใส่ได้ทุกวัน แมทง่ายทั้งกางเกงยีนส์ กระโปรง หรือสายสตรีทก็ลงตัว</p>
+
+              <h4>จุดเด่นสินค้า</h4>
+              <ul>
+                <li>ผ้าโพลีเอสเตอร์ เนื้อเบา ระบายอากาศดี</li>
+                <li>ปกคอแต่งเส้นตัดสี เพิ่มความน่ารักและดูมีดีเทล</li>
+                <li>โลโก้ Zleepy Cloud หน้าอก และสกรีนด้านหลัง</li>
+                <li>ใส่สบาย เหมาะกับอากาศเมืองไทย</li>
+                <li>มีทั้งสีขาว สีดำ และสีดำ-ชมพู</li>
+              </ul>
+
+              <h4>Size</h4>
+              <ul class="sizes">
+                <li>S (Crop Short) : รอบอก 36&quot; / ยาว 15&quot;</li>
+                <li>S : รอบอก 36&quot; / ยาว 16&quot;</li>
+                <li>M : รอบอก 40&quot; / ยาว 17&quot;</li>
+                <li>L : รอบอก 44&quot; / ยาว 18&quot;</li>
+              </ul>
+
+              <h4>มีทั้งหมด 3 สี</h4>
+              <ul>
+                <li>White / Black Logo</li>
+                <li>Black / White Logo</li>
+                <li>Black / Pink Logo</li>
+              </ul>
+
+              <h4>หมายเหตุ</h4>
+              <ul>
+                <li>ขนาดอาจคลาดเคลื่อน 0.5-1 นิ้ว</li>
+                <li>สีสินค้าอาจแตกต่างเล็กน้อยตามแสงและหน้าจอ</li>
+              </ul>
+
+            </div>
+            <div class="actions">
+              <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Crop T-Shirt/Size Chart.jpg" data-size-title="Crop T-Shirt Size Chart">View Size Chart</a>
+              <a class="btn facebook" href="https://www.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener">Facebook Page</a>
+              <a class="btn shopee" href="https://s.shopee.co.th/3VUF5gSP7O" target="_blank" rel="noopener">Shopee</a>
+              <a class="btn tiktok" href="https://vt.tiktok.com/ZS6h3yhmC/" target="_blank" rel="noopener">TikTok</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-polo">
+        <div class="product-layout">
+          <article class="showcase">
+            <img class="showcase-main" id="polo-main" src="./catalog-assets-v2/Polo Golf/สีกรม - Navy/Product-17.jpg" alt="Polo Golf">
+            <div class="thumbs" id="polo-thumbs"></div>
+          </article>
+          <article class="detail">
+            <h3 class="title-font">Polo<br>Golf</h3>
+            <p class="sub">Color Gallery + Polo Banner</p>
+            <div class="chips" id="polo-colors"></div>
+            <div class="polo-copy">
+              <p><strong>Zleepy Cloud Premium Golf Polo</strong><br>เสื้อโปโลกอล์ฟพรีเมียม ดีไซน์ Minimal Luxury ใส่ได้ทั้งออกรอบและลุค Everyday</p>
+
+              <h4>รายละเอียดสินค้า</h4>
+              <ul>
+                <li>เนื้อผ้า Premium Polyester สัมผัสนุ่ม ใส่สบาย</li>
+                <li>ผ้ายืดหยุ่น ระบายอากาศดี ไม่ร้อน</li>
+                <li>แห้งไว ไม่อับชื้น เหมาะกับกิจกรรมกลางแจ้ง</li>
+                <li>ทรงสวย ใส่ได้ทั้งผู้ชายและผู้หญิง</li>
+                <li>ลาย Signature Monogram ทั้งตัว ดูเรียบหรู มีเอกลักษณ์</li>
+                <li>โลโก้หน้าอกแบบปั๊มนูน เพิ่มความพรีเมียม</li>
+                <li>ใส่ตีกอล์ฟ คาเฟ่ หรือ Everyday Look ก็เข้าได้ง่าย</li>
+              </ul>
+
+              <h4>คุณสมบัติเด่น</h4>
+              <ul class="checks">
+                <li>✓ Breathable ระบายอากาศดี</li>
+                <li>✓ Quick Dry แห้งไว</li>
+                <li>✓ Soft Touch เนื้อผ้านุ่ม</li>
+                <li>✓ Stretch Fabric ยืดหยุ่นคล่องตัว</li>
+              </ul>
+
+              <h4>สีที่มี</h4>
+              <ul>
+                <li>Red</li>
+                <li>Black</li>
+                <li>Navy</li>
+                <li>White</li>
+              </ul>
+
+              <h4>Size</h4>
+              <ul class="sizes">
+                <li>S : อก 36&quot; / ยาว 26&quot; / ไหล่ 17&quot;</li>
+                <li>M : อก 40&quot; / ยาว 28&quot; / ไหล่ 19&quot;</li>
+                <li>L : อก 44&quot; / ยาว 30&quot; / ไหล่ 21&quot;</li>
+                <li>XL : อก 46&quot; / ยาว 31&quot; / ไหล่ 22&quot;</li>
+                <li>XXL : อก 51&quot; / ยาว 32&quot; / ไหล่ 23&quot;</li>
+              </ul>
+
+              <h4>คำแนะนำการดูแล</h4>
+              <ul>
+                <li>ซักน้ำอุณหภูมิปกติ</li>
+                <li>ไม่ควรใช้น้ำยาฟอกขาว</li>
+                <li>ตากในที่ร่มเพื่อถนอมเนื้อผ้าและลายเสื้อ</li>
+              </ul>
+
+              <h4>หมายเหตุ</h4>
+              <ul>
+                <li>ขนาดอาจคลาดเคลื่อน 0.5-1 นิ้ว</li>
+                <li>สีสินค้าอาจแตกต่างเล็กน้อยตามแสงและหน้าจอ</li>
+              </ul>
+            </div>
+            <div class="actions">
+              <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Polo Golf/Size Chart Polo Golf.jpg" data-size-title="Polo Golf Size Chart">View Size Chart</a>
+              <a class="btn facebook" href="https://www.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener">Facebook Page</a>
+              <a class="btn shopee" href="https://s.shopee.co.th/3VUF5gSP7O" target="_blank" rel="noopener">Shopee</a>
+              <a class="btn tiktok" href="https://vt.tiktok.com/ZS6h3yhmC/" target="_blank" rel="noopener">TikTok</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="banner">
+      <img src="./catalog-assets-v2/Banner-1.PNG" alt="Zleepy Cloud Banner">
+    </section>
+
+    <footer>© 2026 ZLEEPY CLOUD · Product Catalog (View Only)</footer>
+  </main>
+
+  <div class="modal" id="size-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="size-modal-title">
+      <div class="modal-head">
+        <h4 id="size-modal-title">Size Chart</h4>
+        <button class="modal-close" id="size-modal-close" type="button">Close</button>
+      </div>
+      <img id="size-modal-image" src="" alt="Size Chart">
+    </div>
+  </div>
+
+  <script>
+    const oversizeGallery = [
+      { src: "./catalog-assets-v2/Oversize T-Shirt/Cover Oversize-1.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Oversize T-Shirt/Cover Oversize-2.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Oversize T-Shirt/Cover Oversize-3.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Oversize T-Shirt/Detail-1.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Oversize T-Shirt/Detail-2.jpg", ratio: "1:1" }
+    ];
+
+    const oversizeColorMap = {
+      "White": { src: "./catalog-assets-v2/Oversize T-Shirt/สีขาว/Oversize-White.jpg", ratio: "1:1" },
+      "Black": { src: "./catalog-assets-v2/Oversize T-Shirt/สีดำ/Oversize-Black.jpg", ratio: "1:1" },
+      "Black Pink": { src: "./catalog-assets-v2/Oversize T-Shirt/สีดำ-ชมพู/Oversize Black-Pink.jpg", ratio: "1:1" }
+    };
+
+    const cropGallery = [
+      { src: "./catalog-assets-v2/Crop T-Shirt/Cover Crop-2.png", ratio: "16:9" },
+      { src: "./catalog-assets-v2/Crop T-Shirt/Cover Crop-3.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Crop T-Shirt/Cover Crop-1.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Crop T-Shirt/Detail-1.jpg", ratio: "1:1" },
+      { src: "./catalog-assets-v2/Crop T-Shirt/Detail-2.jpg", ratio: "1:1" }
+    ];
+
+    const cropColorMap = {
+      "White": { src: "./catalog-assets-v2/Crop T-Shirt/สีขาว/Crop-White.jpg", ratio: "1:1" },
+      "Black": { src: "./catalog-assets-v2/Crop T-Shirt/สีดำ/Crop-Black.jpg", ratio: "1:1" },
+      "Black Pink": { src: "./catalog-assets-v2/Crop T-Shirt/สีดำ - ชมพู/Crop-BlackPink.jpg", ratio: "1:1" }
+    };
+
+    const poloColorMap = {
+      "Red": [
+        { src: "./catalog-assets-v2/Polo Golf/สีแดง - Red/Product-01.jpg", ratio: "16:9" },
+        { src: "./catalog-assets-v2/Polo Golf/สีแดง - Red/Product-02.jpg", ratio: "1:1" },
+        { src: "./catalog-assets-v2/Polo Golf/สีแดง - Red/Product-06.jpg", ratio: "1:1" },
+        { src: "./catalog-assets-v2/Polo Golf/สีแดง - Red/Product-22.jpg", ratio: "1:1" }
+      ],
+      "Navy": [
+        { src: "./catalog-assets-v2/Polo Golf/สีกรม - Navy/Product-17.jpg", ratio: "16:9" },
+        { src: "./catalog-assets-v2/Polo Golf/สีกรม - Navy/Product-18.jpg", ratio: "1:1" },
+        { src: "./catalog-assets-v2/Polo Golf/สีกรม - Navy/Product-21.jpg", ratio: "1:1" }
+      ],
+      "Black": [
+        { src: "./catalog-assets-v2/Polo Golf/สีดำ - Black/Product-04.jpg", ratio: "16:9" },
+        { src: "./catalog-assets-v2/Polo Golf/สีดำ - Black/Product-05.jpg", ratio: "1:1" },
+        { src: "./catalog-assets-v2/Polo Golf/สีดำ - Black/Product-07.jpg", ratio: "1:1" },
+        { src: "./catalog-assets-v2/Polo Golf/สีดำ - Black/Product-24.jpg", ratio: "1:1" }
+      ],
+      "Light Beige": [
+        { src: "./catalog-assets-v2/Polo Golf/สีเบจอ่อน - Light Beige/Product-19.jpg", ratio: "16:9" },
+        { src: "./catalog-assets-v2/Polo Golf/สีเบจอ่อน - Light Beige/Product-20.jpg", ratio: "1:1" },
+        { src: "./catalog-assets-v2/Polo Golf/สีเบจอ่อน - Light Beige/Product-23.jpg", ratio: "1:1" }
+      ]
+    };
+
+    function setMainRatio(main, ratio) {
+      // Kept for compatibility with existing data model; natural image ratio is now used.
+    }
+
+    function fillThumbs(containerId, mainId, list) {
+      const main = document.getElementById(mainId);
+      const wrap = document.getElementById(containerId);
+      wrap.innerHTML = list.map((item, i) => {
+        return `<img src="${item.src}" data-src="${item.src}" data-ratio="${item.ratio}" class="${i===0?'active':''}">`;
+      }).join('');
+      if (list[0]) {
+        main.src = list[0].src;
+        setMainRatio(main, list[0].ratio);
+      }
+      wrap.querySelectorAll('img').forEach((img) => {
+        img.addEventListener('click', () => {
+          wrap.querySelectorAll('img').forEach(x => x.classList.remove('active'));
+          img.classList.add('active');
+          main.src = img.dataset.src;
+          setMainRatio(main, img.dataset.ratio);
+        });
+      });
+    }
+
+    function fillColorChips(containerId, map, onPick, initialKey, autoPick = true) {
+      const wrap = document.getElementById(containerId);
+      wrap.innerHTML = '';
+      Object.keys(map).forEach((name) => {
+        const b = document.createElement('button');
+        b.className = 'chip';
+        b.textContent = name;
+        b.dataset.color = name;
+        b.addEventListener('click', () => {
+          wrap.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+          b.classList.add('active');
+          onPick(name);
+        });
+        wrap.appendChild(b);
+      });
+      if (autoPick) {
+        const first = wrap.querySelector(`[data-color="${initialKey}"]`) || wrap.querySelector('.chip');
+        if (first) first.click();
+      }
+    }
+
+    fillThumbs('oversize-thumbs', 'oversize-main', oversizeGallery);
+    fillColorChips('oversize-colors', oversizeColorMap, (name) => {
+      const item = oversizeColorMap[name];
+      const main = document.getElementById('oversize-main');
+      main.src = item.src;
+      setMainRatio(main, item.ratio);
+    }, 'White', false);
+
+    fillThumbs('crop-thumbs', 'crop-main', cropGallery);
+    fillColorChips('crop-colors', cropColorMap, (name) => {
+      const item = cropColorMap[name];
+      const main = document.getElementById('crop-main');
+      main.src = item.src;
+      setMainRatio(main, item.ratio);
+    }, 'White');
+
+    fillColorChips('polo-colors', poloColorMap, (name) => {
+      fillThumbs('polo-thumbs', 'polo-main', poloColorMap[name]);
+    }, 'Navy');
+
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach((t) => {
+      t.addEventListener('click', () => {
+        tabs.forEach(x => x.classList.remove('active'));
+        panels.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        document.getElementById('panel-' + t.dataset.tab).classList.add('active');
+      });
+    });
+
+    const sizeModal = document.getElementById('size-modal');
+    const sizeModalImage = document.getElementById('size-modal-image');
+    const sizeModalTitle = document.getElementById('size-modal-title');
+    const sizeModalClose = document.getElementById('size-modal-close');
+
+    function closeSizeModal() {
+      sizeModal.classList.remove('open');
+      sizeModal.setAttribute('aria-hidden', 'true');
+      sizeModalImage.src = '';
+    }
+
+    document.querySelectorAll('.js-size-open').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        sizeModalImage.src = btn.dataset.sizeSrc;
+        sizeModalTitle.textContent = btn.dataset.sizeTitle || 'Size Chart';
+        sizeModal.classList.add('open');
+        sizeModal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    sizeModalClose.addEventListener('click', closeSizeModal);
+    sizeModal.addEventListener('click', (e) => {
+      if (e.target === sizeModal) closeSizeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sizeModal.classList.contains('open')) closeSizeModal();
+    });
+  </script>
+</body>
+</html>
