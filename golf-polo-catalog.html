@@ -4,6 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ZLEEPY CLOUD - 2026 Product Catalog</title>
+  <meta name="description" content="ZLEEPY CLOUD 2026 Product Catalog: Polo Golf, Oversize T-Shirt, และ Crop T-Shirt พร้อมรายละเอียดสินค้าและช่องทางสั่งซื้อ">
+  <link rel="canonical" href="https://www.zleepycloud.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ZLEEPY CLOUD">
+  <meta property="og:title" content="ZLEEPY CLOUD - 2026 Product Catalog">
+  <meta property="og:description" content="ดูรายละเอียดสินค้า Polo Golf, Oversize T-Shirt และ Crop T-Shirt พร้อมช่องทางสั่งซื้อผ่าน Facebook, Shopee, TikTok">
+  <meta property="og:url" content="https://www.zleepycloud.com/">
+  <meta property="og:image" content="https://www.zleepycloud.com/catalog-assets-v2/Banner-Top-New.PNG">
+  <meta property="og:image:alt" content="ZLEEPY CLOUD Product Catalog">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZLEEPY CLOUD - 2026 Product Catalog">
+  <meta name="twitter:description" content="ดูรายละเอียดสินค้า Polo Golf, Oversize T-Shirt และ Crop T-Shirt พร้อมช่องทางสั่งซื้อ">
+  <meta name="twitter:image" content="https://www.zleepycloud.com/catalog-assets-v2/Banner-Top-New.PNG">
+  <link rel="icon" type="image/jpeg" href="./catalog-assets-v2/favicon-white.jpg">
+  <link rel="shortcut icon" href="./catalog-assets-v2/favicon-white.jpg">
+  <link rel="apple-touch-icon" href="./catalog-assets-v2/favicon-white.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -52,6 +68,9 @@
       min-height: 76px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 16px;
+    }
+    .header-nav {
+      padding: 0 0 10px;
     }
     .brand-wrap {
       display: flex;
@@ -113,19 +132,23 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 16px;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
     }
     .quick-nav a {
-      border: 1px solid var(--line);
-      background: #fff;
       color: var(--muted);
-      border-radius: 999px;
-      padding: 10px 16px;
+      padding: 4px 0;
       font-weight: 700;
       text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color .2s ease, border-color .2s ease;
     }
-    .quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .quick-nav a:hover { color: var(--accent); }
+    .quick-nav a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
     .section-title {
       margin: 8px 0 10px;
       text-align: center;
@@ -215,60 +238,48 @@
     .chip {
       border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px;
       font-size: 13px; background: #fff; cursor: pointer;
+      color: #222;
     }
-    .chip.active { border-color: var(--accent); color: var(--accent); font-weight: 700; }
-    .polo-copy {
+    .chip.active {
+      border-color: var(--accent);
+      font-weight: 700;
+      box-shadow: 0 0 0 2px rgba(15,52,95,.12);
+    }
+    .chip[data-color="Red"] { background: #b0212a; color: #fff; border-color: #8f1821; }
+    .chip[data-color="Navy"] { background: #1f2e59; color: #fff; border-color: #172347; }
+    .chip[data-color="Black"] { background: #1e1e1e; color: #fff; border-color: #111; }
+    .chip[data-color="Light Beige"] { background: #e8deca; color: #3a2e1f; border-color: #d0c2a7; }
+    .chip[data-color="White"] { background: #fff; color: #2a2a2a; border-color: #d5d5d5; }
+    .chip[data-color="Black Pink"] { background: #1c1c1c; color: #df4e92; border-color: #303030; }
+    .chip[data-color="Black / White Logo"] { background: #1c1c1c; color: #fff; border-color: #111; }
+    .chip[data-color="White / Black Logo"] { background: #fff; color: #222; border-color: #d5d5d5; }
+    .chip[data-color="Black / Pink Logo"] { background: #1c1c1c; color: #df4e92; border-color: #303030; }
+    .detail-copy {
       margin: 14px 0 0;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: #fcfaf6;
       padding: 12px;
     }
-    .polo-copy p { margin: 0 0 10px; line-height: 1.7; color: #2a2a2a; font-size: 14px; }
-    .polo-copy p:last-child { margin-bottom: 0; }
-    .polo-copy h4 {
+    .detail-copy p { margin: 0 0 10px; line-height: 1.7; color: #2a2a2a; font-size: 14px; }
+    .detail-copy p:last-child { margin-bottom: 0; }
+    .detail-copy h4 {
       margin: 10px 0 6px;
       font-size: 13px;
       letter-spacing: .03em;
       text-transform: uppercase;
       color: var(--accent);
     }
-    .polo-copy ul {
+    .detail-copy ul {
       margin: 0 0 8px;
       padding-left: 18px;
       color: #2a2a2a;
       line-height: 1.65;
       font-size: 14px;
     }
-    .polo-copy .checks { list-style: none; padding-left: 0; }
-    .polo-copy .checks li { margin-bottom: 4px; }
-    .polo-copy .sizes li { font-variant-numeric: tabular-nums; }
-    .product-copy {
-      margin: 14px 0 0;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fcfaf6;
-      padding: 12px;
-    }
-    .product-copy p { margin: 0 0 10px; line-height: 1.7; color: #2a2a2a; font-size: 14px; }
-    .product-copy p:last-child { margin-bottom: 0; }
-    .product-copy h4 {
-      margin: 10px 0 6px;
-      font-size: 13px;
-      letter-spacing: .03em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .product-copy ul {
-      margin: 0 0 8px;
-      padding-left: 18px;
-      color: #2a2a2a;
-      line-height: 1.65;
-      font-size: 14px;
-    }
-    .product-copy .checks { list-style: none; padding-left: 0; }
-    .product-copy .checks li { margin-bottom: 4px; }
-    .product-copy .sizes li { font-variant-numeric: tabular-nums; }
+    .detail-copy .checks { list-style: none; padding-left: 0; }
+    .detail-copy .checks li { margin-bottom: 4px; }
+    .detail-copy .sizes li { font-variant-numeric: tabular-nums; }
     .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .btn {
       text-decoration: none; color: #fff; font-weight: 700; font-size: 13px;
@@ -281,17 +292,28 @@
     .size { background: var(--accent); }
     .shop-icons { display: flex; gap: 8px; align-items: center; }
     .icon-btn {
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
       text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .02em;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 16px rgba(20,20,20,.08);
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(20,20,20,.12);
+    }
+    .icon-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .banner {
@@ -357,6 +379,7 @@
       .detail-polo {
         max-height: none;
       }
+      .quick-nav { gap: 14px; }
     }
     @media (max-width: 640px) {
       .thumbs { grid-template-columns: repeat(4,minmax(0,1fr)); }
@@ -372,6 +395,13 @@
         <h1 class="brand title-font">ZLEEPY CLOUD</h1>
       </div>
       <div class="note">2026 Product Catalog</div>
+    </div>
+    <div class="wrap header-nav">
+      <nav class="quick-nav">
+        <a class="active" href="#panel-polo">Polo Golf</a>
+        <a href="#panel-oversize">Oversize T-shirt</a>
+        <a href="#panel-crop">Crop T-Shirt</a>
+      </nav>
     </div>
   </header>
 
@@ -390,11 +420,6 @@
     </section>
 
     <section>
-      <div class="quick-nav">
-        <a href="#panel-polo">Polo Golf</a>
-        <a href="#panel-oversize">Oversize T-shirt</a>
-        <a href="#panel-crop">Crop T-Shirt</a>
-      </div>
       <div class="catalog-sections">
       <div class="panel" id="panel-oversize">
         <h2 class="section-title title-font">Oversize T-shirt</h2>
@@ -406,7 +431,7 @@
           <article class="detail">
             <h3 class="title-font">Oversize T-Shirt</h3>
             <div class="chips" id="oversize-colors"></div>
-            <div class="product-copy">
+            <div class="detail-copy">
               <p><strong>ZLEEPY CLOUD OVERSIZE SPORT COLLECTION</strong></p>
               <p>เสื้อ Oversize Sport ดีไซน์คอวีตัด แต่งขอบ 2 สี สไตล์สปอร์ตมินิมอล ใส่ได้ทั้งผู้หญิงและผู้ชาย แมทง่าย ใส่ได้ทั้งออกกำลังกาย คาเฟ่ หรือใส่เที่ยวในวันสบายๆ</p>
 
@@ -447,9 +472,9 @@
             <div class="actions">
               <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Oversize T-Shirt/Size Chart .jpg" data-size-title="Oversize T-shirt Size Chart">View Size Chart</a>
               <div class="shop-icons">
-                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook">f</a>
-                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee">S</a>
-                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">T</a>
+                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook"><img src="./catalog-assets-v2/social-facebook.png" alt="Facebook"></a>
+                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee"><img src="./catalog-assets-v2/social-shopee.png" alt="Shopee"></a>
+                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><img src="./catalog-assets-v2/social-tiktok.png" alt="TikTok"></a>
               </div>
             </div>
           </article>
@@ -466,7 +491,7 @@
           <article class="detail">
             <h3 class="title-font">Crop T-Shirt</h3>
             <div class="chips" id="crop-colors"></div>
-            <div class="product-copy">
+            <div class="detail-copy">
               <p><strong>Zleepy Cloud Sporty Crop T-Shirt</strong></p>
               <p>เสื้อครอปทรงสวย สไตล์สปอร์ตมินิมอล ใส่ได้ทุกวัน แมทง่ายทั้งกางเกงยีนส์ กระโปรง หรือสายสตรีทก็ลงตัว</p>
 
@@ -489,9 +514,7 @@
 
               <h4>มีทั้งหมด 3 สี</h4>
               <ul>
-                <li>White / Black Logo</li>
-                <li>Black / White Logo</li>
-                <li>Black / Pink Logo</li>
+                <li>ดำ / ขาว / ดำ-ชมพู</li>
               </ul>
 
               <h4>หมายเหตุ</h4>
@@ -504,9 +527,9 @@
             <div class="actions">
               <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Crop T-Shirt/Size Chart.jpg" data-size-title="Crop T-Shirt Size Chart">View Size Chart</a>
               <div class="shop-icons">
-                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook">f</a>
-                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee">S</a>
-                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">T</a>
+                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook"><img src="./catalog-assets-v2/social-facebook.png" alt="Facebook"></a>
+                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee"><img src="./catalog-assets-v2/social-shopee.png" alt="Shopee"></a>
+                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><img src="./catalog-assets-v2/social-tiktok.png" alt="TikTok"></a>
               </div>
             </div>
           </article>
@@ -524,7 +547,7 @@
             <h3 class="title-font">Polo Golf</h3>
             <div class="chips" id="polo-colors"></div>
             <div class="detail-body-scroll">
-            <div class="polo-copy">
+            <div class="detail-copy">
               <p><strong>Zleepy Cloud Premium Golf Polo</strong><br>เสื้อโปโลกอล์ฟพรีเมียม ดีไซน์ Minimal Luxury ใส่ได้ทั้งออกรอบและลุค Everyday</p>
 
               <h4>รายละเอียดสินค้า</h4>
@@ -544,14 +567,6 @@
                 <li>✓ Quick Dry แห้งไว</li>
                 <li>✓ Soft Touch เนื้อผ้านุ่ม</li>
                 <li>✓ Stretch Fabric ยืดหยุ่นคล่องตัว</li>
-              </ul>
-
-              <h4>สีที่มี</h4>
-              <ul>
-                <li>Red</li>
-                <li>Black</li>
-                <li>Navy</li>
-                <li>White</li>
               </ul>
 
               <h4>Size</h4>
@@ -580,9 +595,9 @@
             <div class="actions">
               <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Polo Golf/Size Chart Polo Golf.jpg" data-size-title="Polo Golf Size Chart">View Size Chart</a>
               <div class="shop-icons">
-                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook">f</a>
-                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee">S</a>
-                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">T</a>
+                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook"><img src="./catalog-assets-v2/social-facebook.png" alt="Facebook"></a>
+                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee"><img src="./catalog-assets-v2/social-shopee.png" alt="Shopee"></a>
+                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><img src="./catalog-assets-v2/social-tiktok.png" alt="TikTok"></a>
               </div>
             </div>
           </article>
@@ -754,6 +769,26 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && sizeModal.classList.contains('open')) closeSizeModal();
     });
+
+    const navLinks = Array.from(document.querySelectorAll('.quick-nav a'));
+    const navMap = Object.fromEntries(navLinks.map((a) => [a.getAttribute('href').slice(1), a]));
+    const sectionEls = ['panel-polo', 'panel-oversize', 'panel-crop']
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    function setActiveNav(id) {
+      navLinks.forEach((a) => a.classList.remove('active'));
+      if (navMap[id]) navMap[id].classList.add('active');
+    }
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]?.target?.id) setActiveNav(visible[0].target.id);
+    }, { root: null, threshold: [0.25, 0.5, 0.75] });
+
+    sectionEls.forEach((el) => sectionObserver.observe(el));
   </script>
 </body>
 </html>
