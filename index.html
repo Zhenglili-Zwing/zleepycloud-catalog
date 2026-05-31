@@ -27,6 +27,18 @@
         var(--bg);
       font-family: "DM Sans", sans-serif;
     }
+    /* Switch style by changing <body class="bg-full"> to <body class="bg-hero"> */
+    body.bg-full {
+      background:
+        linear-gradient(rgba(245,241,234,.50), rgba(245,241,234,.50)),
+        url("./catalog-assets-v2/bg-golf.jpg") center/cover fixed no-repeat;
+    }
+    body.bg-hero {
+      background:
+        radial-gradient(1000px 500px at 120% -20%, #e6ddcf 0%, transparent 60%),
+        radial-gradient(900px 500px at -20% 120%, #ece4d7 0%, transparent 55%),
+        var(--bg);
+    }
     .wrap { width: min(1220px, 100% - 32px); margin: 0 auto; }
     .title-font { font-family: "Bodoni Moda", serif; }
 
@@ -62,6 +74,15 @@
     .hero {
       padding: 34px 0 20px;
     }
+    body.bg-hero .hero {
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(245,241,234,.58), rgba(245,241,234,.58)),
+        url("./catalog-assets-v2/bg-golf.jpg") center/cover no-repeat;
+      padding: 22px;
+      border: 1px solid var(--line);
+    }
     .hero-main {
       background: linear-gradient(135deg, #fff, #f2eadf);
       border: 1px solid var(--line); border-radius: 20px;
@@ -88,26 +109,48 @@
     }
     .intro p { margin: 0; color: var(--muted); line-height: 1.75; }
 
-    .tabs {
-      display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 16px;
+    .quick-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 16px;
     }
-    .tab {
-      border: 1px solid var(--line); background: #fff;
-      color: var(--muted); border-radius: 999px;
-      padding: 10px 16px; font-weight: 700; cursor: pointer;
+    .quick-nav a {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      text-decoration: none;
     }
-    .tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
-
-    .panel { display: none; }
-    .panel.active { display: block; }
+    .quick-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .section-title {
+      margin: 8px 0 10px;
+      text-align: center;
+      color: var(--accent);
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: .02em;
+    }
+    .catalog-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .panel { display: block; }
+    #panel-polo { order: 1; }
+    #panel-oversize { order: 2; }
+    #panel-crop { order: 3; }
 
     .product-layout {
       display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px;
-      align-items: start;
+      align-items: stretch;
     }
     .showcase, .detail {
       background: #fff; border: 1px solid var(--line); border-radius: 16px;
       overflow: hidden;
+      height: 100%;
     }
     .showcase-main {
       width: 100%;
@@ -136,15 +179,39 @@
       object-fit: cover;
     }
     .thumbs img.active { border-color: var(--gold); }
+    #oversize-thumbs,
+    #crop-thumbs {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      scrollbar-width: thin;
+    }
+    #oversize-thumbs img,
+    #crop-thumbs img {
+      flex: 0 0 calc((100% - 24px) / 4);
+      max-width: calc((100% - 24px) / 4);
+    }
 
     .detail { padding: 18px; }
+    .detail-polo {
+      display: flex;
+      flex-direction: column;
+      max-height: 760px;
+    }
+    .detail-body-scroll {
+      overflow: auto;
+      flex: 1 1 auto;
+      padding-right: 4px;
+      margin: 8px 0 12px;
+    }
     .detail h3 {
       margin: 0; color: var(--accent);
       font-size: clamp(28px, 3.6vw, 40px);
       line-height: 1;
     }
     .sub { margin: 8px 0 16px; color: var(--muted); font-size: 14px; }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; margin-bottom: 14px; }
     .chip {
       border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px;
       font-size: 13px; background: #fff; cursor: pointer;
@@ -212,6 +279,20 @@
     .shopee { background: #ee4d2d; }
     .tiktok { background: #111; }
     .size { background: var(--accent); }
+    .shop-icons { display: flex; gap: 8px; align-items: center; }
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
 
     .banner {
       margin-top: 14px;
@@ -273,6 +354,9 @@
     @media (max-width: 940px) {
       .product-layout { grid-template-columns: 1fr; }
       .thumbs { grid-template-columns: repeat(6,minmax(0,1fr)); }
+      .detail-polo {
+        max-height: none;
+      }
     }
     @media (max-width: 640px) {
       .thumbs { grid-template-columns: repeat(4,minmax(0,1fr)); }
@@ -280,14 +364,14 @@
     }
   </style>
 </head>
-<body>
+<body class="bg-full">
   <header>
     <div class="wrap nav">
       <div class="brand-wrap">
         <img class="brand-logo" src="./catalog-assets-v2/Logo-Zleepy-Cloud-Black.svg" alt="Zleepy Cloud Logo">
         <h1 class="brand title-font">ZLEEPY CLOUD</h1>
       </div>
-      <div class="note">2026 Product Catalog · No Checkout</div>
+      <div class="note">2026 Product Catalog</div>
     </div>
   </header>
 
@@ -306,21 +390,21 @@
     </section>
 
     <section>
-      <div class="tabs">
-        <button class="tab active" data-tab="oversize">Oversize T-shirt</button>
-        <button class="tab" data-tab="crop">Crop T-Shirt</button>
-        <button class="tab" data-tab="polo">Polo Golf</button>
+      <div class="quick-nav">
+        <a href="#panel-polo">Polo Golf</a>
+        <a href="#panel-oversize">Oversize T-shirt</a>
+        <a href="#panel-crop">Crop T-Shirt</a>
       </div>
-
-      <div class="panel active" id="panel-oversize">
+      <div class="catalog-sections">
+      <div class="panel" id="panel-oversize">
+        <h2 class="section-title title-font">Oversize T-shirt</h2>
         <div class="product-layout">
           <article class="showcase">
             <img class="showcase-main" id="oversize-main" src="./catalog-assets-v2/Oversize T-Shirt/Cover Oversize-1.jpg" alt="Oversize">
             <div class="thumbs" id="oversize-thumbs"></div>
           </article>
           <article class="detail">
-            <h3 class="title-font">Oversize<br>T-shirt</h3>
-            <p class="sub">Cover + Detail + Color Preview</p>
+            <h3 class="title-font">Oversize T-Shirt</h3>
             <div class="chips" id="oversize-colors"></div>
             <div class="product-copy">
               <p><strong>ZLEEPY CLOUD OVERSIZE SPORT COLLECTION</strong></p>
@@ -362,23 +446,25 @@
             </div>
             <div class="actions">
               <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Oversize T-Shirt/Size Chart .jpg" data-size-title="Oversize T-shirt Size Chart">View Size Chart</a>
-              <a class="btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener">Facebook Page</a>
-              <a class="btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener">Shopee</a>
-              <a class="btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener">TikTok</a>
+              <div class="shop-icons">
+                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook">f</a>
+                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee">S</a>
+                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">T</a>
+              </div>
             </div>
           </article>
         </div>
       </div>
 
       <div class="panel" id="panel-crop">
+        <h2 class="section-title title-font">Crop T-Shirt</h2>
         <div class="product-layout">
           <article class="showcase">
             <img class="showcase-main square-main" id="crop-main" src="./catalog-assets-v2/Crop T-Shirt/Cover Crop-2.png" alt="Crop">
             <div class="thumbs square-thumbs" id="crop-thumbs"></div>
           </article>
           <article class="detail">
-            <h3 class="title-font">Crop<br>T-Shirt</h3>
-            <p class="sub">Cover + Detail + Color Preview</p>
+            <h3 class="title-font">Crop T-Shirt</h3>
             <div class="chips" id="crop-colors"></div>
             <div class="product-copy">
               <p><strong>Zleepy Cloud Sporty Crop T-Shirt</strong></p>
@@ -417,24 +503,27 @@
             </div>
             <div class="actions">
               <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Crop T-Shirt/Size Chart.jpg" data-size-title="Crop T-Shirt Size Chart">View Size Chart</a>
-              <a class="btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener">Facebook Page</a>
-              <a class="btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener">Shopee</a>
-              <a class="btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener">TikTok</a>
+              <div class="shop-icons">
+                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook">f</a>
+                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee">S</a>
+                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">T</a>
+              </div>
             </div>
           </article>
         </div>
       </div>
 
       <div class="panel" id="panel-polo">
+        <h2 class="section-title title-font">Polo Golf</h2>
         <div class="product-layout">
           <article class="showcase">
             <img class="showcase-main" id="polo-main" src="./catalog-assets-v2/Polo Golf/สีกรม - Navy/Product-17.jpg" alt="Polo Golf">
             <div class="thumbs" id="polo-thumbs"></div>
           </article>
-          <article class="detail">
-            <h3 class="title-font">Polo<br>Golf</h3>
-            <p class="sub">Color Gallery + Polo Banner</p>
+          <article class="detail detail-polo">
+            <h3 class="title-font">Polo Golf</h3>
             <div class="chips" id="polo-colors"></div>
+            <div class="detail-body-scroll">
             <div class="polo-copy">
               <p><strong>Zleepy Cloud Premium Golf Polo</strong><br>เสื้อโปโลกอล์ฟพรีเมียม ดีไซน์ Minimal Luxury ใส่ได้ทั้งออกรอบและลุค Everyday</p>
 
@@ -487,14 +576,18 @@
                 <li>สีสินค้าอาจแตกต่างเล็กน้อยตามแสงและหน้าจอ</li>
               </ul>
             </div>
+            </div>
             <div class="actions">
               <a class="btn size js-size-open" href="#" data-size-src="./catalog-assets-v2/Polo Golf/Size Chart Polo Golf.jpg" data-size-title="Polo Golf Size Chart">View Size Chart</a>
-              <a class="btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener">Facebook Page</a>
-              <a class="btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener">Shopee</a>
-              <a class="btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener">TikTok</a>
+              <div class="shop-icons">
+                <a class="icon-btn facebook" href="https://web.facebook.com/profile.php?id=61569752140227" target="_blank" rel="noopener" aria-label="Facebook Page" title="Facebook">f</a>
+                <a class="icon-btn shopee" href="https://th.shp.ee/ngWPU73h" target="_blank" rel="noopener" aria-label="Shopee" title="Shopee">S</a>
+                <a class="icon-btn tiktok" href="https://vt.tiktok.com/ZS9YDNUwMmqjn-ps9Lb/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">T</a>
+              </div>
             </div>
           </article>
         </div>
+      </div>
       </div>
     </section>
     <section class="banner">
@@ -632,17 +725,6 @@
     fillColorChips('polo-colors', poloColorMap, (name) => {
       fillThumbs('polo-thumbs', 'polo-main', poloColorMap[name]);
     }, 'Navy');
-
-    const tabs = document.querySelectorAll('.tab');
-    const panels = document.querySelectorAll('.panel');
-    tabs.forEach((t) => {
-      t.addEventListener('click', () => {
-        tabs.forEach(x => x.classList.remove('active'));
-        panels.forEach(x => x.classList.remove('active'));
-        t.classList.add('active');
-        document.getElementById('panel-' + t.dataset.tab).classList.add('active');
-      });
-    });
 
     const sizeModal = document.getElementById('size-modal');
     const sizeModalImage = document.getElementById('size-modal-image');
